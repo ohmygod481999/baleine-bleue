@@ -15,6 +15,19 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
             rel="stylesheet"
           />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            rel="stylesheet"
+            href="/assets/fonts/fontawesome/font-awesome.min.css"
+          ></link>
+          <link
+            rel="stylesheet"
+            href="/assets/fonts/iconsmind/iconsmind.css"
+          ></link>
+          <link href="/assets/css/plugins.min.css" rel="stylesheet" />
         </Head>
         <body>
           <Main />

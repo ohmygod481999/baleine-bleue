@@ -3,10 +3,18 @@ import Layout from "@modules/layout/templates"
 import Link from "next/link"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "types/global"
+import LoadScripts from "utils/LoadScripts"
 
 const NotFound: NextPageWithLayout = () => {
   return (
     <>
+      <LoadScripts
+        srcs={[
+          "/assets/scripts/plugins.min.js",
+          "/assets/scripts/script.js",
+          // "/assets/scripts/pages/index.js",
+        ]}
+      />
       <Head title="404" description="Something went wrong" />
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-64px)]">
         <h1 className="text-2xl-semi text-gry-900">Page not found</h1>

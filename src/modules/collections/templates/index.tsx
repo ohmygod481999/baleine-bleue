@@ -3,7 +3,7 @@ import getNumberOfSkeletons from "@lib/util/get-number-of-skeletons"
 import repeat from "@lib/util/repeat"
 import ProductPreview from "@modules/products/components/product-preview"
 import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview"
-import { fetchCollectionProducts } from "@pages/collections/[id]"
+import { fetchInfinityCollectionProducts } from "@pages/collections/[id]"
 import { useCart } from "medusa-react"
 import React, { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
@@ -31,7 +31,7 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
   } = useInfiniteQuery(
     [`get_collection_products`, collection.id, cart?.id],
     ({ pageParam }) =>
-      fetchCollectionProducts({
+      fetchInfinityCollectionProducts({
         pageParam,
         id: collection.id,
         cartId: cart?.id,

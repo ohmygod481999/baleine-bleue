@@ -11,6 +11,7 @@ import { ParsedUrlQuery } from "querystring"
 import { ReactElement } from "react"
 import { dehydrate, QueryClient, useQuery } from "react-query"
 import { NextPageWithLayout, PrefetchedPageProps } from "types/global"
+import LoadScripts from "utils/LoadScripts"
 
 interface Params extends ParsedUrlQuery {
   handle: string
@@ -54,6 +55,13 @@ const ProductPage: NextPageWithLayout<PrefetchedPageProps> = ({ notFound }) => {
   if (isSuccess) {
     return (
       <>
+        <LoadScripts
+          srcs={[
+            "/assets/scripts/plugins.min.js",
+            "/assets/scripts/script.js",
+            // "/assets/scripts/pages/index.js",
+          ]}
+        />
         <Head
           description={data.description}
           title={data.title}

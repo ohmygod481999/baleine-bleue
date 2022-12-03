@@ -6,6 +6,10 @@ import { StoreProvider } from "@lib/context/store-context"
 import { CartProvider, MedusaProvider } from "medusa-react"
 import { Hydrate } from "react-query"
 import "styles/globals.css"
+import "styles/globals.css"
+import "styles/styles.css"
+import "styles/grid.css"
+import "styles/custom.css"
 import { AppPropsWithLayout } from "types/global"
 
 function App({

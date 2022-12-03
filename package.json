@@ -20,6 +20,8 @@
     "@types/react": "17.0.40"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^15.13.1",
+    "@contentful/rich-text-types": "^15.14.1",
     "@headlessui/react": "^1.6.1",
     "@hookform/error-message": "^2.0.0",
     "@medusajs/medusa": "^1.6.3",
@@ -30,6 +32,7 @@
     "@stripe/react-stripe-js": "^1.7.2",
     "@stripe/stripe-js": "^1.29.0",
     "clsx": "^1.1.1",
+    "contentful": "^9.2.13",
     "lodash": "^4.17.21",
     "medusa-react": "^3.0.1",
     "next": "^12.2.0",

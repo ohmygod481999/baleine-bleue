@@ -9,6 +9,7 @@ import { useRouter } from "next/router"
 import { ReactElement } from "react"
 import { dehydrate, QueryClient, useQuery } from "react-query"
 import { NextPageWithLayout } from "types/global"
+import LoadScripts from "utils/LoadScripts"
 
 const fetchOrder = async (id: string) => {
   return await medusaClient.orders.retrieve(id).then(({ order }) => order)
@@ -43,6 +44,13 @@ const Confirmed: NextPageWithLayout = () => {
   if (isSuccess) {
     return (
       <>
+        <LoadScripts
+          srcs={[
+            "/assets/scripts/plugins.min.js",
+            "/assets/scripts/script.js",
+            // "/assets/scripts/pages/index.js",
+          ]}
+        />
         <Head
           title={`Order #${data.display_id}`}
           description="View your order"

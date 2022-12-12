@@ -1523,7 +1523,7 @@ td {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    visibility: hidden;
+    /* visibility: hidden; */
     min-height: 100%;
     max-height: 100%;
     overflow: auto;

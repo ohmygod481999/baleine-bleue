@@ -5,8 +5,10 @@ import Header from "./header"
 
 const Layout: React.FC = ({ children }) => {
   return (
-    <div className="vlt-site-holder animsition vlt-footer-fixed">
-      <div className="vlt-content-holder">
+    <div className="vlt-site-holder  vlt-footer-fixed">
+      <div className="vlt-content-holder" style={{
+        marginBottom: "300px"
+      }}>
         <Header />
         <div className="vlt-navigation-aside-overlay"></div>
         <Nav />

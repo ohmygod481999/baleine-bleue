@@ -33,9 +33,9 @@ jQuery.noConflict()(function($) {
 	var vlthemes_scripts = {
 		init: function() {
 			vlthemes_contact_form();
-			vlthemes_footer_fixed();
+			// vlthemes_footer_fixed();
 			vlthemes_fullscreen_menu();
-			vlthemes_aside_menu();
+			// vlthemes_aside_menu();
 			vlthemes_header_fixed();
 			vlthemes_sidebar_menu();
 			vlthemes_preloader();
@@ -345,18 +345,18 @@ jQuery.noConflict()(function($) {
 	}
 
 	function vlthemes_preloader() {
-		$animsition.animsition({
-			inDuration: 1500,
-			outDuration: 800,
-			inClass: 'fade-in',
-			outClass: 'fade-out',
-			onLoadEvent: true,
-			timeout: true,
-			timeoutCountdown: 1200,
-			linkElement: 'a:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not(.ajax-btn, #cancel-comment-reply-link, .comment-reply-link, .no-anims, .author-anims-link, .lightbox-link, .vlt-cats-toggle a)',
-			loadingClass: 'vlt-preloader-holder',
-			loadingInner: '<div class="vlt-preloader"></div>'
-		});
+		// $animsition.animsition({
+		// 	inDuration: 1500,
+		// 	outDuration: 800,
+		// 	inClass: 'fade-in',
+		// 	outClass: 'fade-out',
+		// 	onLoadEvent: true,
+		// 	timeout: true,
+		// 	timeoutCountdown: 1200,
+		// 	linkElement: 'a:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not(.ajax-btn, #cancel-comment-reply-link, .comment-reply-link, .no-anims, .author-anims-link, .lightbox-link, .vlt-cats-toggle a)',
+		// 	loadingClass: 'vlt-preloader-holder',
+		// 	loadingInner: '<div class="vlt-preloader"></div>'
+		// });
 	}
 
 	function vlthemes_blog_standard() {

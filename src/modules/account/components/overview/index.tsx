@@ -1,4 +1,9 @@
 import { Customer, Order } from "@medusajs/medusa"
+declare module "@medusajs/medusa" {
+  interface Customer {
+    point: number
+  }
+}
 import ChevronDown from "@modules/common/icons/chevron-down"
 import MapPin from "@modules/common/icons/map-pin"
 import Package from "@modules/common/icons/package"
@@ -88,6 +93,17 @@ const Overview = ({ orders, customer }: OverviewProps) => {
                   </span>
                   <span className="uppercase text-base-regular text-gray-500">
                     Saved
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-y-4">
+                <h3 className="text-large-semi">Point</h3>
+                <div className="flex items-end gap-x-2">
+                  <span className="text-3xl-semi leading-none">
+                    {customer?.point}
+                  </span>
+                  <span className="uppercase text-base-regular text-gray-500">
+                    Point
                   </span>
                 </div>
               </div>

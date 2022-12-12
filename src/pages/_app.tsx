@@ -11,6 +11,7 @@ import "styles/styles.css"
 import "styles/grid.css"
 import "styles/custom.css"
 import { AppPropsWithLayout } from "types/global"
+import { MenuProvider } from "@lib/context/menu-context"
 
 function App({
   Component,
@@ -31,7 +32,9 @@ function App({
             <CartProvider>
               <StoreProvider>
                 <AccountProvider>
-                  {getLayout(<Component {...pageProps} />)}
+                  <MenuProvider>
+                    {getLayout(<Component {...pageProps} />)}
+                  </MenuProvider>
                 </AccountProvider>
               </StoreProvider>
             </CartProvider>

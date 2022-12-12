@@ -29,6 +29,8 @@ const Confirmed: NextPageWithLayout = () => {
     }
   )
 
+  console.log(data);
+
   if (isLoading) {
     return <SkeletonOrderConfirmed />
   }

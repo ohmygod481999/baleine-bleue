@@ -1,10 +1,13 @@
+import ApplyPoint from "@modules/checkout/components/apply-point"
 import DiscountCode from "@modules/checkout/components/discount-code"
 import GiftCard from "@modules/checkout/components/gift-card"
 import PaymentButton from "@modules/checkout/components/payment-button"
 import CartTotals from "@modules/common/components/cart-totals"
-import { useCart } from "medusa-react"
+import { useCart, useMeCustomer } from "medusa-react"
 
 const CheckoutSummary = () => {
+  const { customer } = useMeCustomer()
+
   const { cart } = useCart()
 
   if (!cart?.id) {
@@ -21,6 +24,7 @@ const CheckoutSummary = () => {
         <DiscountCode cart={cart} />
       </div>
       <GiftCard cart={cart} />
+      {customer && <ApplyPoint cart={cart} customer={customer}/>}
     </div>
   )
 }

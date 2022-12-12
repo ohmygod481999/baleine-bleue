@@ -18,30 +18,39 @@ const Footer = () => {
             </a>
             <div className="vlt-footer-menu">
               <div>
-                <ul>
+                <ul className="grid small:grid-cols-3 xl:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-y-8 gap-x-16 center">
                   <li>
-                    <a href="#">Works</a>
+                    <a href="/about-us">
+                      <h5>ABOUT US</h5>
+                      <span className="">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                      </span>
+                    </a>
                   </li>
                   <li>
-                    <a href="#">About</a>
+                    <a href="key-message">
+                    <h5>KEY MESSAGE</h5>
+                    <span className="">
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </span>
+                    </a>
                   </li>
                   <li>
-                    <a href="#">Contact</a>
+                    <a href="contact">
+                      <h5>CONTACT</h5>
+                      <span className="">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                      </span>
+                    </a>
                   </li>
-                  <li>
-                    <a href="#">Purchase</a>
-                  </li>
+                  
                 </ul>
               </div>
             </div>
             <div className="vlt-footer-copyright">
               <p>
-                Copyright © 2017 Vinero. Powered by{" "}
-                <a href="#" className="vlt-link reverse">
-                  VLThemes
-                </a>
+                Copyright © 2022 Baleine Bleue.
               </p>
-              <CountrySelect />
             </div>
           </div>
         </div>

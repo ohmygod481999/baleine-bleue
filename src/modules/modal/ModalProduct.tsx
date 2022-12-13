@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Dialog } from "@headlessui/react"
 
 function ModalProduct({
   isOpen,
@@ -7,8 +8,25 @@ function ModalProduct({
   isOpen: boolean
   setIsOpen: Function
 }) {
+  let [isVariantDialogOpen, setIsVariantDialogOpen] = useState(true)
+
   return (
     <>
+      <Dialog
+        open={isVariantDialogOpen}
+        onClose={() => setIsVariantDialogOpen(false)}
+        className="relative"
+        style={{
+          zIndex: 2001,
+        }}
+      >
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="w-full max-w-sm rounded bg-white">
+            <Dialog.Title>Complete your order</Dialog.Title>
+          </Dialog.Panel>
+        </div>
+      </Dialog>
+
       <div
         id="lightcase-overlay"
         style={{
@@ -50,6 +68,9 @@ function ModalProduct({
             <img
               src="/assets/img/portfolio/1.jpg"
               style={{ maxWidth: "789px", maxHeight: "500px" }}
+              onClick={() => {
+                setIsVariantDialogOpen(true)
+              }}
             />
           </div>
         </div>

@@ -29,7 +29,10 @@ const Home: NextPageWithLayout = () => {
       />
       <div
         className="vlt-hero-title-holder jarallax"
-        style={{ backgroundImage: 'url("assets/img/index.jpg")' }}
+        style={{
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80")',
+        }}
       >
         <div className="vlt-hero-title-inner">
           <h1 className="vlt-hero-title">We are Vinero</h1>
@@ -47,7 +50,7 @@ const Home: NextPageWithLayout = () => {
                   `cbp-filter-item ${selected ? "cbp-filter-item-active" : ""}`
                 }
               >
-                All
+                Collections
               </Tab>
               <Tab
                 key="branding"
@@ -58,12 +61,12 @@ const Home: NextPageWithLayout = () => {
                 Branding
               </Tab>
               <Tab
-                key="desgin"
+                key="sns"
                 className={({ selected }) =>
                   `cbp-filter-item ${selected ? "cbp-filter-item-active" : ""}`
                 }
               >
-                Design
+                SNS
               </Tab>
               <Tab
                 key="photo"
@@ -71,7 +74,7 @@ const Home: NextPageWithLayout = () => {
                   `cbp-filter-item ${selected ? "cbp-filter-item-active" : ""}`
                 }
               >
-                Photo
+                Ambassadors
               </Tab>
             </Tab.List>
             <Tab.Panels>
@@ -105,7 +108,7 @@ const Home: NextPageWithLayout = () => {
                     </article>
                   ))}
                 </div>
-                <nav
+                {/* <nav
                   className="vlt-pagination-load-more-btn"
                   data-max-pages={1}
                 >
@@ -115,7 +118,45 @@ const Home: NextPageWithLayout = () => {
                   >
                     Load More
                   </a>
-                </nav>
+                </nav> */}
+              </Tab.Panel>
+              <Tab.Panel></Tab.Panel>
+              <Tab.Panel>
+                <div className="grid grid-cols-1 small:grid-cols-3 gap-x-2 gap-y-2">
+                  <div className="flex justify-center drop-shadow-xl">
+                    <iframe
+                      // className="pr-10"
+                      src="https://www.instagram.com/p/CmbjXRTyeaQ/embed"
+                      width="350"
+                      height="600"
+                      frameBorder="0"
+                      scrolling="no"
+                      allowTransparency={true}
+                    ></iframe>
+                  </div>
+                  <div className="flex justify-center drop-shadow-xl">
+                    <iframe
+                      // className="pr-10"
+                      src="https://www.instagram.com/p/CmT05KHSArL/embed"
+                      width="350"
+                      height="600"
+                      frameBorder="0"
+                      scrolling="no"
+                      allowTransparency={true}
+                    ></iframe>
+                  </div>
+                  <div className="flex justify-center drop-shadow-xl">
+                    <iframe
+                      // className="pr-10"
+                      src="https://www.instagram.com/p/CltLNo0SWSb/embed"
+                      width="350"
+                      height="600"
+                      frameBorder="0"
+                      scrolling="no"
+                      allowTransparency={true}
+                    ></iframe>
+                  </div>
+                </div>
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>

@@ -1,3 +1,4 @@
+import { useMenu } from "@lib/context/menu-context"
 import { useProductActions } from "@lib/context/product-context"
 import useProductPrice from "@lib/hooks/use-product-price"
 import Button from "@modules/common/components/button"
@@ -12,6 +13,7 @@ type ProductActionsProps = {
 }
 
 const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
+  const { openMenu, isOpenMenu } = useMenu()
   const { updateOptions, addToCart, options, inStock, variant } =
     useProductActions()
 
@@ -82,7 +84,14 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         )}
       </div>
 
-      <Button onClick={addToCart}>
+      <Button
+        onClick={() => {
+          addToCart()
+          if (!isOpenMenu) {
+            openMenu()
+          }
+        }}
+      >
         {!inStock ? "Out of stock" : "Add to cart"}
       </Button>
     </div>

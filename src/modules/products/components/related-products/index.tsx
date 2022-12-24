@@ -49,7 +49,7 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
   const previews = usePreviews({ pages: data?.pages, region: cart?.region })
 
   return (
-    <div className="product-page-constraint">
+    <div className="product-page-constraint pb-16">
       <div className="flex flex-col items-center text-center mb-16">
         <span className="text-base-regular text-gray-600 mb-6">
           Related products

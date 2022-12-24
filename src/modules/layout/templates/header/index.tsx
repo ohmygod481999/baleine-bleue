@@ -1,7 +1,9 @@
+import { useMenu } from "@lib/context/menu-context"
 import Link from "next/link"
 import React from "react"
 
 function Header() {
+  const { openMenu, closeMenu, isOpenMenu } = useMenu()
   return (
     <header
       className="vlt-header-holder vlt-header-fixed"
@@ -24,6 +26,7 @@ function Header() {
             <div
               className="vlt-menu-toggle vlt-aside-menu-toggle"
               data-before-text="Menu"
+              onClick={() => openMenu()}
             >
               <span className="line line-one">
                 <span className="inner" />

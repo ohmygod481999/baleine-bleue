@@ -1,12 +1,25 @@
+import { useMenu } from "@lib/context/menu-context"
 import { useMobileMenu } from "@lib/context/mobile-menu-context"
-import { useCart } from "medusa-react"
+import { useOnClickOutside } from "@lib/hooks/use-click-outside"
+import clsx from "clsx"
+import { useCart, useMeCustomer } from "medusa-react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const Nav = () => {
+  const ref = useRef<HTMLDivElement | null>(null)
+  const { customer } = useMeCustomer()
   const { pathname } = useRouter()
   const { totalItems } = useCart()
+  const { openMenu, closeMenu, isOpenMenu } = useMenu()
+
+  useOnClickOutside(ref, () => {
+    if (isOpenMenu) {
+      closeMenu()
+    }
+  })
+
   const [isHome, setIsHome] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -36,27 +49,46 @@ const Nav = () => {
   const { toggle } = useMobileMenu()
 
   return (
-    <div className="vlt-navigation-aside-holder">
+    <div
+      className="vlt-navigation-aside-holder ease-in duration-300"
+      ref={ref}
+      style={{
+        transform: isOpenMenu ? "translate(0%, 0px)" : "translate(100%, 0px)",
+        transition: "all 0.5s",
+      }}
+    >
       <div className="vlt-navigation-aside">
         <ul>
           <li>
             <Link href={"/"}>
-              <a>Home</a>
+              <a onClick={() => closeMenu()}>Home</a>
             </Link>
           </li>
           <li>
             <Link href="/account">
-              <a>Account</a>
+              <a onClick={() => closeMenu()}>
+                {customer ? customer.first_name : "Login"}
+              </a>
             </Link>
           </li>
           <li>
             <Link href="/blog">
-              <a>Blog</a>
+              <a onClick={() => closeMenu()}>Story</a>
             </Link>
           </li>
           <li>
+            {/* <Link href="/blog"> */}
+            <a onClick={() => closeMenu()}>Thông tin</a>
+            {/* </Link> */}
+          </li>
+          <li>
+            {/* <Link href="/blog"> */}
+            <a onClick={() => closeMenu()}>Contact</a>
+            {/* </Link> */}
+          </li>
+          <li>
             <Link href="/cart">
-              <a>{`My Bag (${totalItems})`}</a>
+              <a onClick={() => closeMenu()}>{`My Bag (${totalItems})`}</a>
             </Link>
           </li>
           {/* <li className="menu-item-has-children">
@@ -123,13 +155,13 @@ const Nav = () => {
         <div className="vlt-navigation-socials">
           <ul>
             <li>
-              <a href="#" className="tooltip" title="Dribbble">
-                <i className="fa fa-dribbble" />
+              <a href="#" className="tooltip" title="Instagram">
+                <i className="fa fa-instagram" />
               </a>
             </li>
             <li>
               <a href="#" className="tooltip" title="Pinterest">
-                <i className="fa fa-pinterest" />
+                <img src="/tiktok.svg" className="w-[11px]"/>
               </a>
             </li>
             <li>

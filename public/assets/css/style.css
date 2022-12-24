@@ -1523,7 +1523,7 @@ td {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    visibility: hidden;
+    /* visibility: hidden; */
     min-height: 100%;
     max-height: 100%;
     overflow: auto;
@@ -2231,7 +2231,7 @@ td {
 /*  PAGINATION LOAD MORE BTN
 ----------------------------------------------------------*/
 .vlt-pagination-load-more-btn {
-    margin-top: 100px;
+    margin-top: 10px;
     padding-top: 50px;
     text-align: center;
     position: relative;

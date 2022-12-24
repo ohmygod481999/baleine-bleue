@@ -14,6 +14,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
     tax_total,
     shipping_total,
     total,
+    consume_point,
   } = cart
 
   const getAmount = (amount: number | null | undefined) => {
@@ -42,6 +43,12 @@ const CartTotals: React.FC<CartTotalsProps> = ({ cart }) => {
             <div className="flex items-center justify-between">
               <span>Gift card</span>
               <span>- {getAmount(gift_card_total)}</span>
+            </div>
+          )}
+          {!!consume_point && (
+            <div className="flex items-center justify-between">
+              <span>Apply point</span>
+              <span>- {getAmount(consume_point)}</span>
             </div>
           )}
           <div className="flex items-center justify-between">

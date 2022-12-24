@@ -2231,7 +2231,7 @@ td {
 /*  PAGINATION LOAD MORE BTN
 ----------------------------------------------------------*/
 .vlt-pagination-load-more-btn {
-    margin-top: 100px;
+    margin-top: 10px;
     padding-top: 50px;
     text-align: center;
     position: relative;

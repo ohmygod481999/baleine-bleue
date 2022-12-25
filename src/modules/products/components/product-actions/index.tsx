@@ -57,14 +57,14 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       <h3 className="text-xl-regular">{product.title}</h3>
 
       <p className="text-base-regular">{product.description}</p>
-      <p
-        className="text-base-regular cursor-pointer"
+      <div
+        className="text-base-regular cursor-pointer text-green-900"
         onClick={() => {
           setIsOpenSizeChart(true)
         }}
       >
         Size chart guide
-      </p>
+      </div>
 
       {product.variants.length > 1 && (
         <div className="my-8 flex flex-col gap-y-6">
@@ -119,9 +119,6 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           setTimeout(() => {
             setIsShowing(false)
           }, 3000)
-          if (!isOpenMenu) {
-            openMenu()
-          }
         }}
       >
         {!inStock ? "Out of stock" : "Add to cart"}

@@ -7,7 +7,7 @@ const Layout: React.FC = ({ children }) => {
   return (
     <div className="vlt-site-holder  vlt-footer-fixed">
       <div className="vlt-content-holder" style={{
-        marginBottom: "300px"
+        marginBottom: "490px"
       }}>
         <Header />
         <div className="vlt-navigation-aside-overlay"></div>

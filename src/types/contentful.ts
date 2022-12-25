@@ -17,3 +17,19 @@ export interface Collection {
   id: string
   description: Document
 }
+
+export interface Branding {
+  name: string
+  image: Asset
+}
+export interface Ambassador {
+  name: string
+  image: Asset
+}
+
+export interface HomePage {
+  title: string
+  name: string
+  description: string
+  banner: Asset
+}

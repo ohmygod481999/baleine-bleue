@@ -5,14 +5,35 @@ import Hero from "@modules/home/components/hero"
 import Layout from "@modules/layout/templates"
 import { useCollections } from "medusa-react"
 import Link from "next/link"
-import { ReactElement } from "react"
+import { ReactElement, useEffect, useState } from "react"
 import { NextPageWithLayout } from "types/global"
 import LoadScripts from "utils/LoadScripts"
 import { Tab } from "@headlessui/react"
+import { contentfulClient } from "utils/contenful"
+import { Ambassador, Branding, HomePage } from "types/contentful"
+import { Entry } from "contentful"
+import { getAmbassadors, getBrandings, getHomePage } from "@lib/data/content"
 
 const Home: NextPageWithLayout = () => {
   const { data } = useFeaturedProductsQuery()
   const { collections } = useCollections()
+  const [brandings, setBrandings] = useState<Entry<Branding>[]>([])
+  const [ambassadors, setAmbassadors] = useState<Entry<Ambassador>[]>([])
+  const [homePage, setHomePage] = useState<Entry<HomePage> | null>(null)
+
+  useEffect(() => {
+    getBrandings().then((brandings) => {
+      setBrandings(brandings)
+    })
+
+    getAmbassadors().then((ambassadors) => {
+      setAmbassadors(ambassadors)
+    })
+
+    getHomePage().then((res) => {
+      setHomePage(res)
+    })
+  }, [])
 
   return (
     <>
@@ -30,13 +51,12 @@ const Home: NextPageWithLayout = () => {
       <div
         className="vlt-hero-title-holder jarallax"
         style={{
-          backgroundImage:
-            'url("https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80")',
+          backgroundImage: `url("${homePage?.fields.banner.fields.file.url}")`,
         }}
       >
         <div className="vlt-hero-title-inner">
-          <h1 className="vlt-hero-title">We are Vinero</h1>
-          <p className="vlt-hero-subtitle">Work hard. Dream big.</p>
+          <h1 className="vlt-hero-title">{homePage?.fields.title}</h1>
+          <p className="vlt-hero-subtitle">{homePage?.fields.description}</p>
         </div>
       </div>
       {/* /.vlt-hero-title-holder */}
@@ -83,7 +103,7 @@ const Home: NextPageWithLayout = () => {
                   {collections?.map((product) => (
                     <article
                       key={product.id}
-                      className="col-md-4 mb-5 vlt-portfolio-grid-item vlt-portfolio-style2 portfolio_category-photo"
+                      className="col-md-4 mb-5 vlt-portfolio-grid-item vlt-portfolio-style2 portfolio_category-photo cursor-pointer"
                     >
                       <div className="vlt-portfolio-grid-image">
                         <Link
@@ -120,7 +140,32 @@ const Home: NextPageWithLayout = () => {
                   </a>
                 </nav> */}
               </Tab.Panel>
-              <Tab.Panel></Tab.Panel>
+              <Tab.Panel>
+                <div className="vlt-portfolio-grid cubeportfolio row">
+                  {brandings.map((branding) => (
+                    <article
+                      key={branding.sys.id}
+                      className="col-md-4 mb-5 vlt-portfolio-grid-item vlt-portfolio-style2 portfolio_category-photo"
+                    >
+                      <div className="vlt-portfolio-grid-image">
+                        <img
+                          src={
+                            String(branding.fields.image.fields.file.url) ||
+                            "/assets/img/portfolio/1.jpg"
+                          }
+                          alt=""
+                        />
+                      </div>
+                      <div className="vlt-portfolio-grid-content">
+                        <h5 className="vlt-portfolio-grid-title">
+                          {branding.fields.name}
+                        </h5>
+                        <p className="vlt-portfolio-grid-cat">Photo</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </Tab.Panel>
               <Tab.Panel>
                 <div className="grid grid-cols-1 small:grid-cols-3 gap-x-2 gap-y-2">
                   <div className="flex justify-center drop-shadow-xl">
@@ -158,12 +203,38 @@ const Home: NextPageWithLayout = () => {
                   </div>
                 </div>
               </Tab.Panel>
+              <Tab.Panel>
+                <div className="vlt-portfolio-grid cubeportfolio row">
+                  {ambassadors.map((ambassador) => (
+                    <article
+                      key={ambassador.sys.id}
+                      className="col-md-4 mb-5 vlt-portfolio-grid-item vlt-portfolio-style2 portfolio_category-photo"
+                    >
+                      <div className="vlt-portfolio-grid-image">
+                        <img
+                          src={
+                            String(ambassador.fields.image.fields.file.url) ||
+                            "/assets/img/portfolio/1.jpg"
+                          }
+                          alt=""
+                        />
+                      </div>
+                      <div className="vlt-portfolio-grid-content">
+                        <h5 className="vlt-portfolio-grid-title">
+                          {ambassador.fields.name}
+                        </h5>
+                        <p className="vlt-portfolio-grid-cat">Photo</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
         </div>
       </main>
       {/* <Hero /> */}
-      <FeaturedProducts />
+      {/* <FeaturedProducts /> */}
     </>
   )
 }

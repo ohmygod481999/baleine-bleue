@@ -77,14 +77,9 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            {/* <Link href="/blog"> */}
-            <a onClick={() => closeMenu()}>Thông tin</a>
-            {/* </Link> */}
-          </li>
-          <li>
-            {/* <Link href="/blog"> */}
+            <Link href="/contact">
             <a onClick={() => closeMenu()}>Contact</a>
-            {/* </Link> */}
+            </Link>
           </li>
           <li>
             <Link href="/cart">

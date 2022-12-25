@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { Dialog } from "@headlessui/react"
 import { Product } from "types/medusa"
 import ProductInfo from "@modules/products/templates/product-info"
@@ -19,38 +19,31 @@ function ModalProduct({
   setCurrentProduct: Function
   products: Product[] | undefined
 }) {
-  const orderCurrent = useMemo(() => {
-    if (currentProduct?.id && products) {
-      let i = 0
-      for (let p of products) {
-        if (p.id === currentProduct.id) {
-          return i
-        }
-        i += 1
-      }
-    }
-    return 0
-  }, [currentProduct, products])
+  const [imageIndex, setImageIndex] = useState(0)
 
-  const orderNext = useMemo(() => {
-    if (products) {
-      if (orderCurrent === products.length - 1) {
-        return 0
-      }
-      return orderCurrent + 1
-    }
-    return 0
-  }, [orderCurrent])
+  useEffect(() => {
+    setImageIndex(0)
+  }, [currentProduct])
 
-  const orderPrev = useMemo(() => {
-    if (products) {
-      if (orderCurrent === 0) {
-        return products.length - 1
+  const nextImg = useCallback(() => {
+    if (currentProduct?.images) {
+      if (imageIndex === currentProduct.images.length - 1) {
+        setImageIndex(0)
+      } else {
+        setImageIndex(imageIndex + 1)
       }
-      return orderCurrent - 1
     }
-    return 0
-  }, [orderCurrent])
+  }, [imageIndex, currentProduct])
+
+  const prevImg = useCallback(() => {
+    if (currentProduct?.images) {
+      if (imageIndex === 0) {
+        setImageIndex(currentProduct.images.length - 1)
+      } else {
+        setImageIndex(imageIndex - 1)
+      }
+    }
+  }, [imageIndex, currentProduct])
 
   return (
     <>
@@ -99,8 +92,8 @@ function ModalProduct({
               <img
                 // src="/assets/img/portfolio/1.jpg"
                 src={
-                  currentProduct && currentProduct.thumbnail
-                    ? currentProduct.thumbnail
+                  currentProduct && currentProduct.images[imageIndex]?.url
+                    ? currentProduct.images[imageIndex].url
                     : "/assets/img/portfolio/1.jpg"
                 }
                 style={{ maxWidth: "789px", maxHeight: "500px" }}
@@ -109,7 +102,7 @@ function ModalProduct({
           </div>
           <div id="lightcase-info">
             <div id="lightcase-sequenceInfo">
-              {orderCurrent + 1} of {products?.length}
+              {imageIndex + 1} of {currentProduct?.images?.length}
             </div>
             <h4 id="lightcase-title" style={{ display: "none" }} />
             <p id="lightcase-caption" style={{ display: "none" }} />
@@ -161,9 +154,7 @@ function ModalProduct({
           style={{}}
           onClick={(e) => {
             e.preventDefault()
-            if (products) {
-              setCurrentProduct(products[orderPrev])
-            }
+            prevImg()
           }}
         >
           <span>Prev</span>
@@ -175,7 +166,7 @@ function ModalProduct({
           onClick={(e) => {
             e.preventDefault()
             if (products) {
-              setCurrentProduct(products[orderNext])
+              nextImg()
             }
           }}
         >

@@ -1,7 +1,8 @@
+import { getBlogPage, getBlogs } from "@lib/data/content"
 import Layout from "@modules/layout/templates"
-import { Entry, Asset } from "contentful"
+import { Entry } from "contentful"
 import Link from "next/link"
-import React, { ReactElement, useEffect, useState } from "react"
+import { ReactElement, useEffect, useState } from "react"
 import { Blog, BlogPage } from "types/contentful"
 import { beautifyDate } from "utils"
 import { contentfulClient } from "utils/contenful"
@@ -10,16 +11,13 @@ import LoadScripts from "utils/LoadScripts"
 function BlogNextPage() {
   const [blogs, setBlogs] = useState<Entry<Blog>[]>([])
   const [blogPage, setBlogPage] = useState<Entry<BlogPage> | null>(null)
-  useEffect(() => {
-    contentfulClient
-      .getEntries<Blog>({
-        content_type: "blog",
-      })
-      .then((res) => {
-        setBlogs(res.items)
-      })
 
-    contentfulClient.getEntry<BlogPage>("aukXbexcB87WiUjxw3pFy").then((res) => {
+  useEffect(() => {
+    getBlogs().then((blogs) => {
+      setBlogs(blogs)
+    })
+
+    getBlogPage().then((res) => {
       setBlogPage(res)
     })
   }, [])
@@ -79,7 +77,7 @@ function BlogNextPage() {
                           <div className="vlt-post-meta">
                             <span className="vlt-post-author">
                               <i className="fa fa-fw fa-user" />
-                              <a href="#">VLThemes</a>
+                              <a href="#">Admin</a>
                             </span>
                             <span className="vlt-post-date">
                               <i className="fa fa-fw fa-clock-o" />

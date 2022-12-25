@@ -561,8 +561,9 @@
   min-height: 100%;
   position: fixed;
   z-index: 2000;
-  top: -9999px;
-  bottom: -9999px;
+  height: 100vh;
+  /* top: -9999px;
+  bottom: -9999px; */
   left: 0;
   background: #333;
 }

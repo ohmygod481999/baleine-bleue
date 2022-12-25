@@ -16,6 +16,7 @@ import { ParsedUrlQuery } from "querystring"
 import { ReactElement, useEffect, useState } from "react"
 import { dehydrate, QueryClient, useQuery } from "react-query"
 import { Collection } from "types/contentful"
+import { Product } from "types/medusa"
 import { contentfulClient } from "utils/contenful"
 import LoadScripts from "utils/LoadScripts"
 import { NextPageWithLayout, PrefetchedPageProps } from "../../types/global"
@@ -70,6 +71,7 @@ const CollectionPage: NextPageWithLayout<PrefetchedPageProps> = ({
     useState<Entry<Collection> | null>(null)
 
   const [isOpenModal, setisOpenModal] = useState(false)
+  const [productModal, setProductModal] = useState<Product | null>(null)
 
   const id = typeof query.id === "string" ? query.id : ""
 
@@ -133,7 +135,13 @@ const CollectionPage: NextPageWithLayout<PrefetchedPageProps> = ({
           ]}
         />
         <Head title={data.title} description={`${data.title} collection`} />
-        <ModalProduct isOpen={isOpenModal} setIsOpen={setisOpenModal} />
+        <ModalProduct
+          isOpen={isOpenModal}
+          setIsOpen={setisOpenModal}
+          currentProduct={productModal}
+          setCurrentProduct={setProductModal}
+          products={products}
+        />
 
         <main className="vlt-main-holder">
           <section className="vlt-main-padding">
@@ -149,6 +157,7 @@ const CollectionPage: NextPageWithLayout<PrefetchedPageProps> = ({
                       <a
                         onClick={() => {
                           setisOpenModal(true)
+                          setProductModal(product)
                         }}
                         className="vlt-collage-link lightbox-link cursor-pointer"
                         data-rel="lightcase:gallery"

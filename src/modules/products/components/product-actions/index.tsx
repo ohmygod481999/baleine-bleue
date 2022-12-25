@@ -60,7 +60,6 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       <p
         className="text-base-regular cursor-pointer"
         onClick={() => {
-          console.log("firsaht")
           setIsOpenSizeChart(true)
         }}
       >

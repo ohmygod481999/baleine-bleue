@@ -96,7 +96,7 @@ const CollectionPage: NextPageWithLayout<PrefetchedPageProps> = ({
   )
 
   const { cart } = useCart()
-
+  
   const {
     data: products,
     isError: isQueryProductsError,

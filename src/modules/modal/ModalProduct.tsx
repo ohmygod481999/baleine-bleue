@@ -4,6 +4,7 @@ import { Product } from "types/medusa"
 import ProductInfo from "@modules/products/templates/product-info"
 import ProductTabs from "@modules/products/components/product-tabs"
 import { ProductProvider } from "@lib/context/product-context"
+import ModalSizeChart from "./ModalSizeChart"
 
 function ModalProduct({
   isOpen,
@@ -18,8 +19,6 @@ function ModalProduct({
   setCurrentProduct: Function
   products: Product[] | undefined
 }) {
-  let [isVariantDialogOpen, setIsVariantDialogOpen] = useState(true)
-
   const orderCurrent = useMemo(() => {
     if (currentProduct?.id && products) {
       let i = 0
@@ -55,21 +54,6 @@ function ModalProduct({
 
   return (
     <>
-      <Dialog
-        open={isVariantDialogOpen}
-        onClose={() => setIsVariantDialogOpen(false)}
-        className="relative"
-        style={{
-          zIndex: 2001,
-        }}
-      >
-        <div className="fixed inset-0 flex items-center justify-center p-4">
-          <Dialog.Panel className="w-full max-w-sm rounded bg-white">
-            <Dialog.Title>Complete your order</Dialog.Title>
-          </Dialog.Panel>
-        </div>
-      </Dialog>
-
       <div
         id="lightcase-overlay"
         style={{
@@ -120,9 +104,6 @@ function ModalProduct({
                     : "/assets/img/portfolio/1.jpg"
                 }
                 style={{ maxWidth: "789px", maxHeight: "500px" }}
-                onClick={() => {
-                  setIsVariantDialogOpen(true)
-                }}
               />
             </div>
           </div>
